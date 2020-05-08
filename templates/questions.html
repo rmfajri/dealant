@@ -1,0 +1,57 @@
+{% extends "front_page.html" %}
+{% block contents %}
+
+{% if request.method == 'GET' %}
+        <h1 class="mt-4">Please mark the hate speech: </h1>
+        <form method="post">
+            <div class="container">
+            <div class="row my-3">
+                <div class="col-lg-11">Question:</div>
+                <div class="col-lg-1">Is hate speech?</div>
+                </div>
+            {% for order in question_numbers %}
+                <div class="row my-3">
+                <div class="col-lg-11">{{ questions[order] }}</div>
+                <div class="col-lg-1"><input type="checkbox" name="{{ question_ids[order] }}"></div>
+                </div>
+            {% endfor %}
+            <input type="hidden" value="{{ questions }}" name="questions" />
+            <input type="hidden" value="{{ question_ids }}" name="question_ids" />
+            <input type="hidden" value="{{ classifier }}" name="classifier" />
+            <div class="col-lg-2"><input type=submit value="Submit" class="btn btn-primary"></div>
+            <div class="col-lg-10"></div>
+            </div>
+            </div>
+        </form>
+
+{% endif %}
+
+    {% if request.method == 'POST' %}
+    <h1> Training </h1><br>
+        <table >
+            <tr><td>Total hate speech occurrences in training data:</td><td>{{ train_count }}</td></tr>
+            <tr><td>Percentage of hate speech in training data:</td><td>{{ p_train }}</td></tr>
+            <tr><td>Train hate speech occurrences in testing data:</td><td>{{ test_count }}</td></tr>
+            <tr><td>Percentage of hate speech in testing data:</td><td>{{ p_test }}</td></tr>
+        </table>
+        <br><br>
+
+        <h2>Training based on initial training data</h2><br>
+        <table>
+            <tr><td>Initial Accuracy</td><td>{{ first_training_output['accuracy'] }}</td></tr>
+            <tr><td>Download initial accuracy</td><td><a href="/static/Results_unlabel.csv">Download CSV</a></td></tr>
+        </table>
+        <table>
+        {% for training_output, new_shape in results %}
+
+            <tr><td>New shape of training data</td> <td>{{ new_shape['training_new_shape'] }}</td></tr>
+            <tr><td>New length of unlabeled data</td><td> {{ new_shape['unlabel_new_length'] }}</td></tr>
+            <tr><td>Accuracy</td><td>{{ training_output['accuracy'] }}</td></tr>
+
+            <tr><td colspan="2"><a href="/static/Results_unlabel-{{ loop.index }}.csv">Download CSV</a></td></tr>
+
+
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

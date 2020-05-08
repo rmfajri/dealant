@@ -1,0 +1,22 @@
+{% extends "front_page.html" %}
+{% block contents %}
+<div class="container-fluid">
+  <h1 class="mt-4">Preprocessing</h1>
+    <h2>Loading datasets</h2>
+      <p>Training dataset shape: {{df_shapes[0]}}</p>
+      <p>Test dataset shape: {{df_shapes[1]}}</p>
+      <p>Unlabel dataset shape: {{df_shapes[2]}}</p>
+    <h2>Form the corpus of sentences</h2>
+      <p>Length of the training sentences: {{ data_lengths[0] }}</p>
+      <p>Length of the testing sentences: {{ data_lengths[1] }}</p>
+      <p>Length of the unlabeled sentences: {{ data_lengths[2] }}</p>
+      <p>Length of the total sentences combined: {{ data_lengths[3] }}</p>
+    <h2>Preprocessed sentences</h2>
+      <p>Length of the training preprocessed sentences: {{ w2v_lengths[0] }}</p>
+      <p>Length of the testing preprocessed sentences: {{ w2v_lengths[1] }}</p>
+      <p>Length of the unlabeled preprocessed sentences: {{ w2v_lengths[2] }}</p>
+      <p>First training preprocessed sentence: {{ w2v_first[0] }}</p>
+      <p>First testing preprocessed sentence: {{ w2v_first[1] }}</p>
+      <p>First labeled preprocessed sentence: {{ w2v_first[2] }}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "front_page.html" %}
+{% block contents %}
+<div class="container-fluid">
+        <h1 class="mt-4">Please select the classifier: </h1>
+        <form method="post">
+            <div class="container">
+            <div class="row my-3">
+            <div class="col-lg-2">Random Forest:</div>
+            <div class="col-lg-4"><input type="radio" value="random_forest" name="classifier"></div>
+            <div class="col-lg-6"></div>
+            </div>
+            <div class="row my-3">
+            <div class="col-lg-2">SVC:</div>
+            <div class="col-lg-4"><input type="radio" value="svc" name="classifier"></div>
+            <div class="col-lg-6"></div>
+            </div>
+            <div class="row my-3">
+            <div class="col-lg-2">KNN:</div>
+            <div class="col-lg-4"><input type="radio" value="knn" name="classifier"></div>
+            <div class="col-lg-6"></div>
+            </div>
+                <div class="row my-3">
+            <div class="col-lg-2">How many question per batch</div>
+            <div class="col-lg-4"><input type="text" name="question_num"></div>
+            <div class="col-lg-6"></div>
+            </div>
+            <div class="row">
+            <div class="col-lg-2"><input type=submit value="Submit" class="btn btn-primary"></div>
+            <div class="col-lg-10"></div>
+            </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
